@@ -7,12 +7,14 @@
   </head>
   <body>
     <h1>DETALLE PELICULA</h1>
-    <p>Título:</p>
-    <p>Rating:</p>
-    <p>Premios:</p>
-    <p>Fecha de estreno:</p>
-    <p>Duración:</p>
-    <p>Genero:</p>
+    <p>Título: <%= detail.title %></p>
+    <p>Rating: <%= detail.rating %></p>
+    <p>Premios: <%= detail.awards %></p>
+    <p>Fecha de estreno: <%= detail.release_date %></p>
+    <p>Duración: <%= detail.length %></p>
+
+    <p>Genero: ></p>
+
     <p>Lista de actores presentes en la pelicula:</p>
     <button><a href="deleteMovies/:id">Eliminar pelicula</a></button>
     <button><a href="editMovies/:id">Modificar Pelicula</a></button>

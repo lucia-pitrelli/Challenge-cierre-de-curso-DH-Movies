@@ -4,7 +4,7 @@ module.exports = (sequelize, dataTypes) => {
   const alias = "User";
   const col = {
     id: {
-      type: dataTypes.INTEGER(10), // o sin numero
+      type: dataTypes.INTEGER(10),
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
@@ -41,15 +41,5 @@ module.exports = (sequelize, dataTypes) => {
 
   const User = sequelize.define(alias, col, config);
 
-  User.associate = function (models) {
-    // Episode.belongsToMany(models.Movie, {
-    //    as: "categorias",
-    //   through: "categoryProduct",
-    //});
-    //  Actor.belongsTo(models.Brand, {
-    //    foreignKey: "brand_id",
-    //    as: "brand",
-    //  });
-  };
   return User;
 };

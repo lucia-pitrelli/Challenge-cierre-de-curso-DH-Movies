@@ -4,7 +4,7 @@ module.exports = (sequelize, dataTypes) => {
   const alias = "Movie";
   const col = {
     id: {
-      type: dataTypes.INTEGER(10), // o sin numero
+      type: dataTypes.INTEGER(10),
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
@@ -38,10 +38,12 @@ module.exports = (sequelize, dataTypes) => {
   };
 
   const config = {
-    timestamps: false,
+    timestamps: true,
     tableName: "movies",
     createdAt: "created_at",
     updatedAt: "updated_at",
+    deletedAt: false,
+    //paranoid: true,
   };
 
   const Movie = sequelize.define(alias, col, config);

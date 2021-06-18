@@ -1,10 +1,10 @@
 // ************ Require's ************
-//const createError = require("http-errors"); desintalar dependencia
+//const createError = require("http-errors"); desinstalar dependencia
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
-//const logger = require("morgan");  desintalar dependencia
+//const logger = require("morgan");  desinstalar dependencia
 const methodOverride = require("method-override");
 require("dotenv").config();
 const models = require("./database/models/index");

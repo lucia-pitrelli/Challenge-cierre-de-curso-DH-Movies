@@ -23,15 +23,5 @@ module.exports = (sequelize, dataTypes) => {
 
   const Password = sequelize.define(alias, col, config);
 
-  Password.associate = function (models) {
-    // Episode.belongsToMany(models.Movie, {
-    //    as: "categorias",
-    //   through: "categoryProduct",
-    //});
-    //  Actor.belongsTo(models.Brand, {
-    //    foreignKey: "brand_id",
-    //    as: "brand",
-    //  });
-  };
   return Password;
 };

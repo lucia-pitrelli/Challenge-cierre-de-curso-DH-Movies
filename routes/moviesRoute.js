@@ -6,11 +6,9 @@ const router = express.Router();
 
 const moviesController = require("../controllers/moviesController");
 
-// Middelware Required
-
 /* GET detail movie. */
 
-router.get("/detailMovies", moviesController.detail); // colocar /:id
+router.get("/detailMovies/:id", moviesController.detail); // colocar /:id
 
 /* GET create movie form. */
 

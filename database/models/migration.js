@@ -30,15 +30,5 @@ module.exports = (sequelize, dataTypes) => {
 
   const Migration = sequelize.define(alias, col, config);
 
-  Migration.associate = function (models) {
-    //  Migration.belongsToMany(models.Movie, {
-    //    as: "categorias",
-    //   through: "categoryProduct",
-    // });
-    //  Migration.belongsTo(models.Brand, {
-    //    foreignKey: "brand_id",
-    //    as: "brand",
-    //  });
-  };
   return Migration;
 };
