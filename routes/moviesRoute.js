@@ -4,17 +4,17 @@ const router = express.Router();
 
 // ************ Controller Require ************
 
-//COLOCAR
+const moviesController = require("../controllers/moviesController");
 
 // Middelware Required
 
 /* GET detail movie. */
 
-//router.get("/detailMovies/:id")
+router.get("/detailMovies", moviesController.detail); // colocar /:id
 
 /* GET create movie form. */
 
-//router.get("/createMovies")
+router.get("/createMovies", moviesController.add);
 
 /* POST create movie form. */
 
@@ -22,7 +22,7 @@ const router = express.Router();
 
 /* GET edit movie form. */
 
-//router.get("/editMovies")
+router.get("/editMovies", moviesController.update);
 
 /* PUT edit movie form. */
 
@@ -30,7 +30,7 @@ const router = express.Router();
 
 /* DELETE one movie. */
 
-//router.get("/deleteMovies/:id");
+router.get("/deleteMovies", moviesController.delete); //colocar /:id
 //router.delete("/deleteMovies/:id");
 
 module.exports = router;

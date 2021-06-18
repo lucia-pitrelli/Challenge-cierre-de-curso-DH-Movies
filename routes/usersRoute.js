@@ -4,24 +4,24 @@ const router = express.Router();
 
 // ************ Controller Require ************
 
-//COLOCAR
+const userController = require("../controllers/usersController");
 
 // Middelware Required
 
 /* Register and processing form*/
 
-//router.get("/register");
+router.get("/register", userController.register);
 
 //router.post("/register");
 
 /*Log in and processing form*/
 
-//router.get("/login")
+router.get("/login", userController.login);
 
 //router.post("/login")
 
 /* GET user profile. */
 
-//router.get("/usersProfile/:id");
+router.get("/usersProfile", userController.profile); //colocar /:id
 
 module.exports = router;
