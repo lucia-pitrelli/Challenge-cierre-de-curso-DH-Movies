@@ -2,6 +2,7 @@
   "name": "challenge-cierre-de-curso-dh-movies",
   "version": "0.0.0",
   "description": "Challenge cierre de curso Programación Web Full Stack, Digital House",
+  "main": "app.js",
   "private": true,
   "scripts": {
     "start": "nodemon app.js"
@@ -12,6 +13,7 @@
   },
   "author": "Lucia Pitrelli",
   "dependencies": {
+    "D": "^1.0.0",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

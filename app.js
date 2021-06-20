@@ -40,6 +40,7 @@ app.use(
     secret: "movies dh",
     resave: false,
     saveUninitialized: false,
+    // maxAge: 24 * 60 * 60 * 1000 -> 24hs
   })
 );
 

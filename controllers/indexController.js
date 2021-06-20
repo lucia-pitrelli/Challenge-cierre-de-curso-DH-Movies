@@ -1,4 +1,4 @@
-const db = require("../database/models");
+const db = require("./../database/models");
 const allMovies = db.Movie;
 const sequelize = db.sequelize;
 
@@ -6,8 +6,8 @@ const main = {
   home: (req, res) => {
     allMovies
       .findAll()
-      .then((movie) => {
-        return res.render("index", { movie });
+      .then((allMovie) => {
+        return res.render("index", { allMovie });
       })
       .catch((error) => {
         return res.redirect(error);

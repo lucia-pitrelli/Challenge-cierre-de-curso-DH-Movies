@@ -25,4 +25,5 @@ router.get("/login", userController.login);
 /* GET user profile. */
 
 router.get("/usersProfile/:id", userController.profile);
+
 module.exports = router;

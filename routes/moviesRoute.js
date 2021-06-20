@@ -4,31 +4,28 @@ const router = express.Router();
 
 // ************ Controller Require ************
 
-const moviesController = require("../controllers/moviesController");
+const movieController = require("../controllers/moviesController");
 
 /* GET detail movie. */
 
-router.get("/detailMovies/:id", moviesController.detail); // colocar /:id
+router.get("/detailMovies/:id", movieController.detail);
 
-/* GET create movie form. */
+/* create movie form. */
 
-router.get("/createMovies", moviesController.add);
+router.get("/createMovies", movieController.add);
 
-/* POST create movie form. */
+router.post("/createMovies", movieController.create);
 
-//router.post("/createMovies")
+/* edit movie form. */
 
-/* GET edit movie form. */
+router.get("/editMovies/:id", movieController.update);
 
-router.get("/editMovies", moviesController.update);
-
-/* PUT edit movie form. */
-
-///router.put("/editMovies")
+router.put("/editMovies/:id", movieController.edit);
 
 /* DELETE one movie. */
 
-router.get("/deleteMovies", moviesController.delete); //colocar /:id
-//router.delete("/deleteMovies/:id");
+router.get("/deleteMovies/:id", movieController.delete);
+
+router.delete("/deleteMovies/:id", movieController.destroy);
 
 module.exports = router;

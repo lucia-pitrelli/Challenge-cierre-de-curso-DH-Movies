@@ -5,9 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
+
   <body>
     <h1>EDITAR PELICULAS</h1>
-    <p></p>
+    <form
+      action="/movies/editMovies/<%= updateMovie.id %>?_method=PUT"
+      enctype="text/plain"
+      method="POST"
+    >
+      <label for="title">Titulo</label>
+      <input
+        type="text"
+        name="title"
+        id="title"
+        value="<%= updateMovie.title %>"
+      />
+      <label for="rating">Rating</label>
+      <input
+        type="number"
+        name="rating"
+        id="rating"
+        value="<%= updateMovie.rating %>"
+      />
+      <label for="awards">Premios</label>
+      <input
+        type="awar"
+        name="awards"
+        id="awards"
+        value="<%= updateMovie.awards %>"
+      />
+      <label for="release_date">Fecha de estreno</label>
+      <input
+        type="relea"
+        name="release_date"
+        id="release_date"
+        value="<%= updateMovie.release_date %>"
+      />
+      <label for="length">Duracion</label>
+      <input
+        type="len"
+        name="length"
+        id="length"
+        value="<%= updateMovie.length %>"
+      />
+      <label for="genre_id">Genero</label>
+      <input
+        type="genre"
+        name="genre_id"
+        id="genre_id"
+        value="<%= updateMovie.genre_id %>"
+      />
+      <button type="submit">Guardar</button>
+      <button type="reset">Cancelar</button>
+    </form>
     <button><a href="/">Volver al listado de peliculas</a></button>
   </body>
 </html>
