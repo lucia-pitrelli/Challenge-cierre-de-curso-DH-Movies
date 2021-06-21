@@ -42,8 +42,8 @@ module.exports = (sequelize, dataTypes) => {
     tableName: "movies",
     createdAt: "created_at",
     updatedAt: "updated_at",
-    deletedAt: false, // darle un nombre al campo
-    paranoid: true,
+    //deletedAt: false, // darle un nombre al campo
+    //paranoid: true,
   };
 
   const Movie = sequelize.define(alias, col, config);

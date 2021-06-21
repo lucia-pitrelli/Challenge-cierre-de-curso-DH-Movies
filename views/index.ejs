@@ -9,10 +9,14 @@
     <h1>LISTADO de PELICULAS</h1>
     <% for (let i=0; i < allMovie.length; i++) { %>
     <p>
-      <a href="/movies/detailMovies/<%= movie[i].id %>"
+      <a href="/movies/detailMovies/<%= allMovie[i].id %>"
         ><%= allMovie[i].title %>
       </a>
     </p>
     <% } %>
+
+    <button>
+      <a href="/movies/createMovies">Agregar Pelicula</a>
+    </button>
   </body>
 </html>

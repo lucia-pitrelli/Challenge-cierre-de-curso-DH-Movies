@@ -1,4 +1,4 @@
-const db = require("../database/models");
+const db = require("./../database/models");
 const allMovies = db.Movie;
 const sequelize = db.sequelize;
 
@@ -58,7 +58,7 @@ const usersController = {
   },
 
   edit: function (req, res) {
-    allmovies
+    allMovies
       .update(req.body, { where: { id: req.params.id } })
       .then(() => {
         return res.redirect("index");

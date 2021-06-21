@@ -7,6 +7,7 @@ const main = {
     allMovies
       .findAll()
       .then((allMovie) => {
+        console.log(allMovie);
         return res.render("index", { allMovie });
       })
       .catch((error) => {

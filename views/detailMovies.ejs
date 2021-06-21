@@ -16,8 +16,12 @@
     <p>Genero: ></p>
 
     <p>Lista de actores presentes en la pelicula:</p>
-    <button><a href="deleteMovies/:id">Eliminar pelicula</a></button>
-    <button><a href="editMovies/:id">Modificar Pelicula</a></button>
+    <button>
+      <a href="/movies/deleteMovies/<%= detail.id %>">Eliminar pelicula</a>
+    </button>
+    <button>
+      <a href="/movies/editMovies/<%= detail.id %>">Modificar Pelicula</a>
+    </button>
     <button><a href="/">Volver al listado de peliculas</a></button>
   </body>
 </html>
