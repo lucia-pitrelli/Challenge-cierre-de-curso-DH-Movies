@@ -9,38 +9,53 @@
   <body>
     <h1>AGREGAR una PELICULA</h1>
     <form action="/movies/createMovies" method="POST">
-      <label for="title">Titulo</label>
-      <input type="text" name="title" id="title" value="<%= movie.title %>" />
-      <label for="rating">Rating</label>
+      <div>
+         <label for="title">Titulo</label>
+      <input type="text" name="title" id="title" />
+      </div>
+     <div>
+             <label for="rating">Rating</label>
       <input
         type="numbers"
         name="rating"
         id="rating"
-        value="<%= movie.rating %>"
+        
       />
-      <label for="awards">Premios</label>
-      <input type="aw" name="awards" id="awards" value="<%= movie.awards %>" />
-      <label for="release_date">Fecha de estreno</label>
+     </div>
+<div>
+        <label for="awards">Premios</label>
+      <input type="aw" name="awards" id="awards" />
+</div>
+<div>
+        <label for="release_date">Fecha de estreno</label>
       <input
-        type="release"
+        type="date"
         name="release_date"
         id="release_date"
-        value="<%= movie.release_date %>"
+        
       />
-      <label for="length">Duracion</label>
+</div>
+<div>
+        <label for="length">Duracion</label>
       <input
-        type="lens"
+        type="length"
         name="length"
         id="length"
-        value="<%= movie.length %>"
+        
       />
-      <label for="genre_id">Genero</label>
-      <input
-        type="genres"
-        name="genre_id"
-        id="genre_id"
-        value="<%= movie.genre_id %>"
-      />
+</div>
+<div>
+       <label for="">Genero</label>
+      <select  name="genre">
+        <% for (let i = 0; i < genre.length; i++) { %>
+        <option value="<%= genre[i].id %>">
+        <%= genre[i].name %>
+        </option>
+         <% } %>
+        </select>
+      
+</div>
+
       <button type="submit">Guardar</button>
       <button type="reset">Cancelar</button>
     </form>

@@ -1,36 +1,42 @@
-const Sequelize = require("sequelize");
-
 module.exports = (sequelize, dataTypes) => {
-  const alias = "Genre";
-  const col = {
+  let alias = "Genre";
+  let cols = {
     id: {
-      type: dataTypes.INTEGER(10), // o sin numero
+      type: dataTypes.BIGINT(10).UNSIGNED,
       primaryKey: true,
+      allowNull: false,
       autoIncrement: true,
-      allowNull: false,
     },
 
-    name: Sequelize.STRING(100),
-
+    name: {
+      type: dataTypes.STRING(100),
+      allowNull: false,
+    },
     ranking: {
-      type: dataTypes.INTEGER(10),
+      type: dataTypes.BIGINT(10).UNSIGNED,
       allowNull: false,
     },
-
     active: {
-      type: dataTypes.TINYINT(1),
+      type: dataTypes.BOOLEAN,
       allowNull: false,
     },
   };
 
-  const config = {
-    timestamps: false,
-    tableName: "genres",
+  let config = {
+    timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
+    deletedAt: false,
   };
 
-  const Genre = sequelize.define(alias, col, config);
+  const Genre = sequelize.define(alias, cols, config);
+
+  Genre.associate = function (models) {
+    Genre.hasMany(models.Movie, {
+      as: "movies", // El nombre del modelo pero en plural
+      foreignKey: "genre_id",
+    });
+  };
 
   return Genre;
 };

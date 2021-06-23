@@ -1,11 +1,18 @@
 const db = require("./../database/models");
 const allMovies = db.Movie;
+const allGenres = db.Genre;
+const allActors = db.Actor;
 const sequelize = db.sequelize;
+//const moment = require("moment");
+//const path = require("path");
+const { Op } = require("sequelize");
 
-const usersController = {
+const moviesController = {
   detail: (req, res) => {
     allMovies
-      .findByPk(req.params.id)
+      .findByPk(req.params.id, {
+        include: [{ association: "genre" }, { association: "actors" }],
+      }) //utilizo los as de movie
       .then((detail) => {
         return res.render("detailMovies", { detail });
       })
@@ -15,26 +22,28 @@ const usersController = {
   },
   //get create form
   add: (req, res) => {
-    allMovies
+    allGenres
       .findAll()
-      .then((movie) => {
-        return res.render("createMovies", { movie });
+      .then((genre) => {
+        return res.render("createMovies", { genre });
       })
       .catch((error) => {
         return res.redirect(error);
       });
   },
-
+  //post create form
   create: (req, res) => {
     //const errors = validationResult(req);
     //if (errors.isEmpty()) {
     const newMovie = {
       ...req.body,
-      genre_id: req.body.genre_id,
+      genre_id: req.body.genre,
     };
     allMovies
       .create(newMovie)
       .then((newMovie) => {
+        // console.log(newMovie);
+        //return res.redirect(`detailMovies/${req.params.id}`);
         return res.redirect("index");
       })
       .catch((error) => {
@@ -45,22 +54,31 @@ const usersController = {
   },
   //},
 
-  // get edit form
+  /// get edit form
   update: (req, res) => {
-    allMovies
-      .findByPk(req.params.id)
-      .then((updateMovie) => {
-        return res.render("editMovies", { updateMovie });
+    const updateMovie = allMovies.findByPk(req.params.id, {
+      include: ["genre"],
+    });
+    const updateGenre = allGenres.findAll();
+
+    Promise.all([updateMovie, updateGenre])
+      .then(([movie, genre]) => {
+        return res.render("editMovies", { movie, genre });
       })
       .catch((error) => {
         return res.redirect(error);
       });
   },
 
+  //post edit form
   edit: function (req, res) {
     allMovies
-      .update(req.body, { where: { id: req.params.id } })
+      .update(
+        { ...req.body, genre_id: req.body.genre },
+        { where: { id: req.params.id } }
+      )
       .then(() => {
+        //console.log("sale",req.body)
         return res.redirect("index");
       })
       .catch((error) => {
@@ -68,6 +86,7 @@ const usersController = {
       });
   },
 
+  // delete form
   delete: function (req, res) {
     allMovies.findByPk(req.params.id).then((movies) => {
       return res.render("deleteMovies", { movies });
@@ -76,8 +95,8 @@ const usersController = {
 
   destroy: function (req, res) {
     allMovies
-      .destroy({ where: { id: req.params.id }, force: true })
-      .then((movies) => {
+      .destroy({ where: { id: req.params.id }, force: true }) // force: true es para asegurar que se ejecute la acción
+      .then(() => {
         return res.redirect("index");
       })
       .catch(() => {
@@ -86,4 +105,4 @@ const usersController = {
   },
 };
 
-module.exports = usersController;
+module.exports = moviesController;

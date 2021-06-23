@@ -1,52 +1,48 @@
-const Sequelize = require("sequelize");
-
 module.exports = (sequelize, dataTypes) => {
-  const alias = "Episode";
-  const col = {
+  let alias = "Episode";
+  let cols = {
     id: {
-      type: dataTypes.INTEGER(10), // o sin numero
+      type: dataTypes.BIGINT(10).UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false,
     },
 
-    title: Sequelize.STRING(500),
-
-    number: Sequelize.INTEGER(10),
-
-    release_date: {
-      type: dataTypes.DATE,
-      allowNull: false,
+    title: {
+      type: dataTypes.STRING(500),
+      allowNull: true,
     },
-
+    number: {
+      type: dataTypes.BIGINT(10).UNSIGNED,
+      allowNull: true,
+    },
     rating: {
-      type: dataTypes.DECIMAL,
+      type: dataTypes.DECIMAL(3, 1),
       allowNull: false,
     },
-
     season_id: {
-      type: dataTypes.INTEGER(10),
+      type: dataTypes.BIGINT(10).UNSIGNED,
+      allowNull: true,
     },
   };
 
-  const config = {
-    timestamps: false,
-    tableName: "episodes",
+  let config = {
+    timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
+    deletedAt: false,
   };
 
-  const Episode = sequelize.define(alias, col, config);
+  const Episode = sequelize.define(alias, cols, config);
 
   Episode.associate = function (models) {
-    Episode.belongsToMany(models.Movie, {
-      as: "episodeMovie",
+    Episode.belongsToMany(models.Actor, {
+      as: "actors",
       through: "actor_episode",
-    });
-    Episode.belongsTo(models.Season, {
-      foreignKey: "season_id",
-      as: "allSeason",
+      foreignKey: "episode_id",
+      otherKey: "actor_id",
+      timestamps: false,
     });
   };
+
   return Episode;
 };

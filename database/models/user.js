@@ -29,7 +29,9 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.STRING(100),
     },
 
-    //falta colocar rol
+    rol: {
+      type: dataTypes.STRING(20),
+    },
   };
 
   const config = {

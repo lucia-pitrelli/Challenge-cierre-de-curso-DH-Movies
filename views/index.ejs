@@ -8,11 +8,13 @@
   <body>
     <h1>LISTADO de PELICULAS</h1>
     <% for (let i=0; i < allMovie.length; i++) { %>
-    <p>
+    <ul>
+      <li>
       <a href="/movies/detailMovies/<%= allMovie[i].id %>"
         ><%= allMovie[i].title %>
       </a>
-    </p>
+      </li>
+    </ul>
     <% } %>
 
     <button>

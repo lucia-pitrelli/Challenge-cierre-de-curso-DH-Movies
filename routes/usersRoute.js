@@ -20,10 +20,14 @@ router.post("/register", userController.processRegister);
 
 router.get("/login", userController.login);
 
-//router.post("/login")
+//router.post("/login", userController.processLogin);
 
 /* GET user profile. */
 
 router.get("/usersProfile/:id", userController.profile);
+
+/*Logout*/
+
+//router.get("/logout", userController.logout);
 
 module.exports = router;

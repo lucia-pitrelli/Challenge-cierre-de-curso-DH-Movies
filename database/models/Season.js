@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 
 module.exports = (sequelize, dataTypes) => {
-  const alias = "Serie";
+  const alias = "Season";
   const col = {
     id: {
       type: dataTypes.INTEGER(10), // o sin numero
@@ -10,10 +10,9 @@ module.exports = (sequelize, dataTypes) => {
       allowNull: false,
     },
 
-    title: {
-      type: dataTypes.STRING(500), // varchar?
-      allowNull: false,
-    },
+    title: Sequelize.STRING(500),
+
+    number: Sequelize.INTEGER(10).UNSIGNED,
 
     release_date: {
       type: dataTypes.DATE,
@@ -25,25 +24,25 @@ module.exports = (sequelize, dataTypes) => {
       allowNull: false,
     },
 
-    genre_id: {
+    serie_id: {
       type: dataTypes.INTEGER(10).UNSIGNED,
     },
   };
 
   const config = {
     timestamps: false,
-    tableName: "series",
+    tableName: "seasons",
     createdAt: "created_at",
     updatedAt: "updated_at",
   };
 
-  const Serie = sequelize.define(alias, col, config);
+  const Season = sequelize.define(alias, col, config);
 
-  Serie.associate = function (models) {
-    Serie.belongsTo(models.Genre, {
-      foreignKey: "genre_id",
-      as: "genero",
-    });
-  };
-  return Serie;
+ // Season.associate = function (models) {
+  //  Season.belongsTo(models.Serie, {
+   //   foreignKey: "serie_id",
+   //   as: "allSerie",
+   // });
+ // };
+  return Season;
 };

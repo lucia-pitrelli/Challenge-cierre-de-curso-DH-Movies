@@ -2,8 +2,8 @@
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
-const cookieParser = require("cookie-parser");
-const session = require("express-session");
+//const cookieParser = require("cookie-parser");
+//const session = require("express-session");
 //const logger = require("morgan");  desinstalar dependencia
 const methodOverride = require("method-override");
 require("dotenv").config();
@@ -33,16 +33,16 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cookieParser());
+//app.use(cookieParser());
 
-app.use(
+/*app.use(
   session({
     secret: "movies dh",
     resave: false,
     saveUninitialized: false,
     // maxAge: 24 * 60 * 60 * 1000 -> 24hs
   })
-);
+);*/
 
 app.use(methodOverride("_method"));
 

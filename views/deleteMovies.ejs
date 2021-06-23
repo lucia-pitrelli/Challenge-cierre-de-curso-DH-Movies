@@ -7,7 +7,7 @@
   </head>
 
   <body>
-    <form
+   <form
       action="/movies/deleteMovies/<%= movies.id %>?_method=DELETE"
       method="POST"
       class="form-menu"
@@ -15,7 +15,7 @@
       <h1>ELIMINAR PELICULA</h1>
       <p>¿ Deseas eliminar a <%= movies.title %>?</p>
       <button type="submit">Borrar pelicula</button>
-      <a href="/"> Volver al Listado de peliculas</a>
     </form>
+    <a href="/"> Volver al Listado de peliculas</a>
   </body>
 </html>

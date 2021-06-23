@@ -9,52 +9,75 @@
   <body>
     <h1>EDITAR PELICULAS</h1>
     <form
-      action="/movies/editMovies/<%= updateMovie.id %>?_method=PUT"
-      enctype="text/plain"
+      action="/movies/editMovies/<%= movie.id %>?_method=PUT"
       method="POST"
     >
-      <label for="title">Titulo</label>
+    <div>
+            <label for="title">Titulo</label>
       <input
         type="text"
         name="title"
         id="title"
-        value="<%= updateMovie.title %>"
+        value="<%= movie.title %>"
       />
-      <label for="rating">Rating</label>
+    </div>
+
+    <div>
+            <label for="rating">Rating</label>
       <input
         type="number"
         name="rating"
         id="rating"
-        value="<%= updateMovie.rating %>"
+        value="<%= movie.rating %>"
       />
-      <label for="awards">Premios</label>
+    </div>
+<div>
+        <label for="awards">Premios</label>
       <input
         type="awar"
         name="awards"
         id="awards"
-        value="<%= updateMovie.awards %>"
+        value="<%= movie.awards %>"
       />
-      <label for="release_date">Fecha de estreno</label>
+</div>
+<div>
+        <label for="release_date">Fecha de estreno</label>
       <input
-        type="relea"
+        type="date"
         name="release_date"
         id="release_date"
-        value="<%= updateMovie.release_date %>"
+        value="<%= movie.release_date %>"
       />
-      <label for="length">Duracion</label>
+</div>
+
+<div>
+        <label for="length">Duracion</label>
       <input
         type="len"
         name="length"
         id="length"
-        value="<%= updateMovie.length %>"
+        value="<%= movie.length %>"
       />
-      <label for="genre_id">Genero</label>
-      <input
-        type="genre"
-        name="genre_id"
-        id="genre_id"
-        value="<%= updateMovie.genre_id %>"
-      />
+</div>
+
+<div>
+       <label for="">Genero</label>
+      <select  name="genre">
+        <% for (let i = 0; i < genre.length; i++) { %>
+          <% if (genre[i].id == movie.genre_id) { %>          
+        <option value="<%= genre[i].id %>" selected>
+        <%= genre[i].name %>
+        </option>
+        <% } else { %>
+        <option value="<%= genre[i].id %>">
+        <%= genre[i].name %>
+        </option>
+         <% } %>
+         <% } %>
+        </select>
+      
+</div>
+
       <button type="submit">Guardar</button>
       <button type="reset">Cancelar</button>
     </form>

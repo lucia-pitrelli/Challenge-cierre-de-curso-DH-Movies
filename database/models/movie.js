@@ -1,62 +1,56 @@
-const Sequelize = require("sequelize");
-
 module.exports = (sequelize, dataTypes) => {
-  const alias = "Movie";
-  const col = {
+  let alias = "Movie";
+  let cols = {
     id: {
-      type: dataTypes.INTEGER(10),
+      type: dataTypes.BIGINT(10).UNSIGNED,
       primaryKey: true,
-      autoIncrement: true,
       allowNull: false,
+      autoIncrement: true,
     },
 
     title: {
       type: dataTypes.STRING(500),
       allowNull: false,
     },
-
     rating: {
-      type: dataTypes.DECIMAL.UNSIGNED,
+      type: dataTypes.DECIMAL(3, 1).UNSIGNED,
       allowNull: false,
     },
-
     awards: {
-      type: dataTypes.INTEGER(10).UNSIGNED,
+      type: dataTypes.BIGINT(10).UNSIGNED,
       allowNull: false,
     },
-
     release_date: {
-      type: dataTypes.DATE(6),
+      type: dataTypes.DATEONLY,
       allowNull: false,
     },
-
-    length: Sequelize.INTEGER(10).UNSIGNED,
-
-    genre_id: {
-      type: dataTypes.INTEGER(10).UNSIGNED,
-    },
+    length: dataTypes.BIGINT(10),
+    genre_id: dataTypes.BIGINT(10),
   };
-
-  const config = {
+  let config = {
     timestamps: true,
-    tableName: "movies",
     createdAt: "created_at",
     updatedAt: "updated_at",
-    //deletedAt: false, // darle un nombre al campo
-    //paranoid: true,
+    deletedAt: false,
   };
-
-  const Movie = sequelize.define(alias, col, config);
+  const Movie = sequelize.define(alias, cols, config);
 
   Movie.associate = function (models) {
-    Movie.belongsToMany(models.Actor, {
-      as: "movieActors",
-      through: "actor_movie",
-    });
     Movie.belongsTo(models.Genre, {
-      foreignKey: "genre_id",
+      // pertenece a un solo genero
       as: "genre",
+      foreignKey: "genre_id",
+    });
+
+    Movie.belongsToMany(models.Actor, {
+      // muchos a muchos
+      as: "actors",
+      through: "actor_movie",
+      foreignKey: "movie_id",
+      otherKey: "actor_id",
+      timestamps: false,
     });
   };
+
   return Movie;
 };
