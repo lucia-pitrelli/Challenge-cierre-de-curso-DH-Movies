@@ -30,24 +30,37 @@ const usersController = {
   },
 
   processLogin: (req, res) => {
+    console.log("pepe", req.body);
     allUsers
       .findOne({ where: { email: req.body.email } })
       .then((user) => {
+        console.log("usuario", user);
         if (user) {
-          if (bcryptjs.compareSync(req.body.password, user.password)) {
-            userData = user.dataValues;
+          if (bcrypt.compareSync(req.body.password, user.password)) {
+            let userData = user.dataValues;
             delete userData.password;
+            //le doy valor al usuario en session de userData,mientras sea el mismo usuario se tiene los datos del usuario
             req.session.user = userData;
+            console.log(req.session);
             if (req.body.token) {
               const token = crypto.randomBytes(64).toString("base64");
 
-              allUsers.update({ remember_token: token });
-
-              res.cookies("rememberToken", token, {
-                maxAge: 1000 * 60 * 60 * 24 * 90,
-              });
+              user
+                .update(
+                  { remember_token: token },
+                  { where: { id: req.params.id } }
+                )
+                .then(() => {
+                  // 24hs guardado
+                  res.cookie("rememberToken", token, {
+                    maxAge: 24 * 60 * 60 * 1000,
+                  });
+                  return res.redirect("/");
+                })
+                .catch((error) => {
+                  return res.redirect(error);
+                });
             }
-            return res.redirect("/");
           } else {
             return res.render("login", {
               errors: {
@@ -61,7 +74,7 @@ const usersController = {
           return res.render("login", {
             errors: {
               email: {
-                msg: "Los datos son inválidos",
+                msg: "No se encuentra registrado el usuario",
               },
             },
           });
@@ -72,23 +85,11 @@ const usersController = {
       });
   },
 
-  /* profile: (req, res) => {
-    allUsers
-      .findByPk(req.params.id)
-      .then((user) => {
-        return res.render("usersProfile", { user });
-      })
-      .catch((error) => {
-        return res.redirect(error);
-      });
-    return res.render("usersProfile");
-  },
-},*/
-
   logout: (req, res) => {
+    //elimino la session y luego la cookie
     req.session.destroy();
 
-    res.cookie("rememberToken", null, { maxAge: -1 }); //destruyo la cookie
+    res.cookie("rememberToken", null, { maxAge: -1 });
 
     res.redirect("/");
   },

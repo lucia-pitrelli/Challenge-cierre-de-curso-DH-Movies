@@ -4,7 +4,7 @@ module.exports = (sequelize, dataTypes) => {
   const alias = "Migration";
   const col = {
     id: {
-      type: dataTypes.INTEGER(10).UNSIGNED, // o sin numero
+      type: dataTypes.INTEGER(10).UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,

@@ -8,6 +8,10 @@ const userController = require("../controllers/usersController");
 
 // Middelware Required
 
+const noUser = require("../middlewares/noUserRoute");
+const user = require("../middlewares/userRoute");
+const admin = require("../middlewares/admRoute");
+
 /* Register and processing form*/
 
 router.get("/register", userController.register);
@@ -19,10 +23,6 @@ router.post("/register", userController.processRegister);
 router.get("/login", userController.login);
 
 router.post("/login", userController.processLogin);
-
-/* GET user profile. */
-
-//router.get("/usersProfile/:id", userController.profile);
 
 /*Logout*/
 

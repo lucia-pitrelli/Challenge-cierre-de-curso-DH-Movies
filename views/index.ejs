@@ -6,34 +6,43 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <section>
+    <main>
+       <section></section>
       <% if (!locals.user) { %>
-      <button><a href="/users/login">Login</a></button>
-      <button><a href="/users/register">Registro</a></button>
-      <% } else { %>}
-      <button>
-        <a href="/users/profile">Bienvenida/o <%= locals.userLogged.name %> </a>
-      </button>
-      <button><a href="/users/logout">Logout</a></button>
-      <% } %>
       <div>
-        <% if (locals.user) { %>
-        <button>
-          <a href="/movies/createMovies">Agregar Pelicula</a>
-        </button>
-        <% } %>
+        <button><a href="/users/login">Login</a></button>
       </div>
-    </section>
+      <div>
+        <button><a href="/users/register">Registro</a></button>
+      </div>
+      <% } else { %>
+     
+        <div>
+          <h1>Bienvenida/o <%= locals.user.name %></h1>
+        </div>
+        <div>
+          <button><a href="/users/logout">Logout</a></button>
+        </div>
+        <div>
+          <button>
+            <a href="/movies/createMovies">Agregar Pelicula</a>
+          </button>
+        </div>
+         <% } %>
+      </section>
 
-    <h1>LISTADO de PELICULAS</h1>
-    <% for (let i=0; i < allMovie.length; i++) { %>
-    <ul>
-      <li>
-        <a href="/movies/detailMovies/<%= allMovie[i].id %>"
-          ><%= allMovie[i].title %>
-        </a>
-      </li>
-    </ul>
-    <% } %>
+      <section>
+        <h2>LISTADO de PELICULAS</h2>
+        <% for (let i=0; i < allMovie.length; i++) { %>
+        <ul>
+          <li>
+            <a href="/movies/detailMovies/<%= allMovie[i].id %>"
+              ><%= allMovie[i].title %>
+            </a>
+          </li>
+        </ul>
+        <% } %>
+      </section>
+    </main>
   </body>
 </html>

@@ -32,6 +32,7 @@ module.exports = (sequelize, dataTypes) => {
     createdAt: "created_at",
     updatedAt: "updated_at",
     deletedAt: false,
+    //paranoid: true   deletedAt: "softDelete"
   };
   const Movie = sequelize.define(alias, cols, config);
 

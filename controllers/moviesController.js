@@ -1,10 +1,9 @@
 const db = require("./../database/models");
 const allMovies = db.Movie;
 const allGenres = db.Genre;
-const allActors = db.Actor;
+//const allActors = db.Actor;
 const sequelize = db.sequelize;
-//const moment = require("moment");
-//const path = require("path");
+
 const { Op } = require("sequelize");
 const { validationResult } = require("express-validator");
 
@@ -35,6 +34,8 @@ const moviesController = {
   //post create form
   create: (req, res) => {
     const errors = validationResult(req);
+    console.log("pepito", errors);
+
     if (errors.isEmpty()) {
       const newMovie = {
         ...req.body,
@@ -42,16 +43,25 @@ const moviesController = {
       };
       allMovies
         .create(newMovie)
-        .then((newMovie) => {
-          // console.log(newMovie);
-
+        .then(() => {
           return res.redirect("/");
         })
         .catch((error) => {
           return res.redirect(error);
         });
     } else {
-      res.render("createMovies", { errors: errors.mapped(), old: req.body });
+      allGenres
+        .findAll()
+        .then((genre) => {
+          return res.render("createMovies", {
+            errors: errors.mapped(),
+            old: req.body,
+            genre,
+          });
+        })
+        .catch((error) => {
+          return res.redirect(error);
+        });
     }
   },
 
@@ -73,18 +83,38 @@ const moviesController = {
 
   //post edit form
   edit: function (req, res) {
-    allMovies
-      .update(
-        { ...req.body, genre_id: req.body.genre },
-        { where: { id: req.params.id } }
-      )
-      .then(() => {
-        //console.log("sale",req.body)
-        return res.redirect("/");
-      })
-      .catch((error) => {
-        return res.redirect(error);
+    const errors = validationResult(req);
+    if (errors.isEmpty()) {
+      allMovies
+        .update(
+          { ...req.body, genre_id: req.body.genre },
+          { where: { id: req.params.id } }
+        )
+        .then(() => {
+          return res.redirect("/");
+        })
+        .catch((error) => {
+          return res.redirect(error);
+        });
+    } else {
+      const updateMovie = allMovies.findByPk(req.params.id, {
+        include: ["genre"],
       });
+      const updateGenre = allGenres.findAll();
+
+      Promise.all([updateMovie, updateGenre])
+        .then(([movie, genre]) => {
+          return res.render("editMovies", {
+            errors: errors.mapped(),
+            old: req.body,
+            genre,
+            movie,
+          });
+        })
+        .catch((error) => {
+          return res.redirect(error);
+        });
+    }
   },
 
   // delete form
@@ -96,7 +126,7 @@ const moviesController = {
 
   destroy: function (req, res) {
     allMovies
-      .destroy({ where: { id: req.params.id }, force: true }) // force: true es para asegurar que se ejecute la acción
+      .destroy({ where: { id: req.params.id }, force: true }) // force: true es para asegurar que se ejecute la acción (hard-delete)
       .then(() => {
         return res.redirect("/");
       })

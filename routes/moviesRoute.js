@@ -6,8 +6,8 @@ const router = express.Router();
 
 const movieController = require("../controllers/moviesController");
 
-// Middelware Required
-//const validateForm = require("../middlewares/ValidateCreateAndEdit");
+// Middelware
+const validations = require("../middlewares/ValidateCreateAndEdit");
 
 /* GET detail movie. */
 
@@ -17,13 +17,13 @@ router.get("/detailMovies/:id", movieController.detail);
 
 router.get("/createMovies", movieController.add);
 
-router.post("/createMovies", /*validateForm,*/ movieController.create);
+router.post("/createMovies", validations, movieController.create);
 
 /* edit movie form. */
 
 router.get("/editMovies/:id", movieController.update);
 
-router.put("/editMovies/:id", movieController.edit);
+router.put("/editMovies/:id", validations, movieController.edit);
 
 /* DELETE one movie. */
 

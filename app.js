@@ -2,7 +2,7 @@
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
-const cookies = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const session = require("express-session");
 //const logger = require("morgan");  desinstalar dependencia
 const methodOverride = require("method-override");
@@ -34,16 +34,15 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: false })); // permite capturar la informacion de un formulario via post a traves de req.body
 
-app.use(cookies());
-
 app.use(
   session({
-    secret: "58758094kut",
+    secret: "keijrkut",
     resave: false,
     saveUninitialized: false,
-    // maxAge: 24 * 60 * 60 * 1000 -> 24hs
   })
 );
+
+app.use(cookieParser());
 
 app.use(userLogged);
 

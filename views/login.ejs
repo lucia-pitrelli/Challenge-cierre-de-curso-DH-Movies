@@ -14,10 +14,9 @@
         <label for="email"></label>
         <input type="email" name="email" id="email" placeholder="Email" />
         <% if (locals.errors && errors.email) { %>
-        <p><%= errors.email.msg %></p>
+        <p class="text"><%= errors.email.msg %></p>
         <% } %>
       </div>
-
       <div>
         <label for="password"></label>
         <input
@@ -27,14 +26,16 @@
           placeholder="Contraseña"
         />
       </div>
-
       <div>
         <label for="token">
           <input type="checkbox" name="token" />Recordar mi usuario
         </label>
       </div>
-
       <button type="submit">Inicia Sesión</button>
     </form>
+    <div>
+      <p>¿ No tenés cuenta?</p>
+      <a href="/users/register">Registrate</a>
+    </div>
   </body>
 </html>

@@ -8,75 +8,78 @@
 
   <body>
     <h1>EDITAR PELICULAS</h1>
-    <form
-      action="/movies/editMovies/<%= movie.id %>?_method=PUT"
-      method="POST"
-    >
-    <div>
-            <label for="title">Titulo</label>
-      <input
-        type="text"
-        name="title"
-        id="title"
-        value="<%= movie.title %>"
-      />
-    </div>
+    <form action="/movies/editMovies/<%= movie.id %>?_method=PUT" method="POST">
+      <div>
+        <label for="title">Titulo</label>
+        <input type="text" name="title" id="title" value="<%= movie.title %>" />
+        <% if (locals.errors && errors.title) { %>
+        <p class="text"><%= errors.title.msg %></p>
+        <% } %>
+      </div>
 
-    <div>
-            <label for="rating">Rating</label>
-      <input
-        type="number"
-        name="rating"
-        id="rating"
-        value="<%= movie.rating %>"
-      />
-    </div>
-<div>
+      <div>
+        <label for="rating">Rating</label>
+        <input
+          type="decimal"
+          name="rating"
+          id="rating"
+          value="<%= movie.rating %>"
+        />
+        <% if (locals.errors && errors.rating) { %>
+        <p class="text"><%= errors.rating.msg %></p>
+        <% } %>
+      </div>
+      <div>
         <label for="awards">Premios</label>
-      <input
-        type="awar"
-        name="awards"
-        id="awards"
-        value="<%= movie.awards %>"
-      />
-</div>
-<div>
+        <input
+          type="number"
+          name="awards"
+          id="awards"
+          value="<%= movie.awards %>"
+        />
+        <% if (locals.errors && errors.awards) { %>
+        <p class="text"><%= errors.awards.msg %></p>
+        <% } %>
+      </div>
+      <div>
         <label for="release_date">Fecha de estreno</label>
-      <input
-        type="date"
-        name="release_date"
-        id="release_date"
-        value="<%= movie.release_date %>"
-      />
-</div>
+        <input
+          type="date"
+          name="release_date"
+          id="release_date"
+          value="<%= movie.release_date %>"
+        />
+        <% if (locals.errors && errors.release_date) { %>
+        <p class="text"><%= errors.release_date.msg %></p>
+        <% } %>
+      </div>
 
-<div>
+      <div>
         <label for="length">Duracion</label>
-      <input
-        type="len"
-        name="length"
-        id="length"
-        value="<%= movie.length %>"
-      />
-</div>
+        <input
+          type="len"
+          name="length"
+          id="length"
+          value="<%= movie.length %>"
+        />
+        <% if (locals.errors && errors.release_date) { %>
+        <p class="text"><%= errors.release_date.msg %></p>
+        <% } %>
+      </div>
 
-<div>
-       <label for="">Genero</label>
-      <select  name="genre">
-        <% for (let i = 0; i < genre.length; i++) { %>
-          <% if (genre[i].id == movie.genre_id) { %>          
-        <option value="<%= genre[i].id %>" selected>
-        <%= genre[i].name %>
-        </option>
-        <% } else { %>
-        <option value="<%= genre[i].id %>">
-        <%= genre[i].name %>
-        </option>
-         <% } %>
-         <% } %>
+      <div>
+        <label for="">Genero</label>
+        <select name="genre" id="genre">
+          <% for (let i=0; i < genre.length; i++) { %> <% if
+          (genre[i].id==movie.genre_id) { %>
+          <option value="<%= genre[i].id %>" selected>
+            <%= genre[i].name %>
+          </option>
+          <% } else { %>
+          <option value="<%= genre[i].id %>"><%= genre[i].name %></option>
+          <% } %> <% } %>
         </select>
-      
-</div>
+      </div>
 
       <button type="submit">Guardar</button>
       <button type="reset">Cancelar</button>

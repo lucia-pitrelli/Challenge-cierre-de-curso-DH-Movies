@@ -18,31 +18,31 @@
           value=" <%= locals.old && old.title %>"
         />
         <% if (locals.errors && errors.title) { %>
-        <p><%= errors.title %></p>
+        <p class="text"><%= errors.title.msg %></p>
         <% } %>
       </div>
       <div>
         <label for="rating">Rating</label>
         <input
-          type="numbers"
+          type="decimal"
           name="rating"
           id="rating"
           value=" <%= locals.old && old.rating %>"
         />
         <% if (locals.errors && errors.rating) { %>
-        <p><%= errors.rating %></p>
+        <p class="text"><%= errors.rating.msg %></p>
         <% } %>
       </div>
       <div>
         <label for="awards">Premios</label>
         <input
-          type="aw"
+          type="number"
           name="awards"
           id="awards"
           value=" <%= locals.old && old.awards %>"
         />
         <% if (locals.errors && errors.awards) { %>
-        <p><%= errors.awards %></p>
+        <p class="text"><%= errors.awards.msg %></p>
         <% } %>
       </div>
       <div>
@@ -54,12 +54,17 @@
           value=" <%= locals.old && old.release_date %>"
         />
         <% if (locals.errors && errors.release_date) { %>
-        <p><%= errors.release_date %></p>
+        <p class="text"><%= errors.release_date.msg %></p>
         <% } %>
       </div>
       <div>
         <label for="length">Duracion</label>
-        <input type="length" name="length" id="length" />
+        <input
+          type="length"
+          name="length"
+          id="length"
+          value=" <%= locals.old && old.length %>"
+        />
       </div>
       <div>
         <label for="">Genero</label>
