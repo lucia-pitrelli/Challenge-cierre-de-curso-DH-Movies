@@ -12,22 +12,28 @@
     <p>Premios: <%= detail.awards %></p>
     <p>Fecha de estreno: <%= detail.release_date %></p>
     <p>Duración: <%= detail.length %></p>
-    <p>Genero: <%= detail.genre.name %> </p>
+    <p>Genero: <%= detail.genre.name %></p>
     <p>Actores presentes en la pelicula:</p>
     <ul>
-<% for (let i=0; i < detail.actors.length; i++) { %>
-<li>
-  <%= detail.actors[i].first_name %> <%= detail.actors[i].last_name %>
-</li>
-<% } %>
+      <% for (let i=0; i < detail.actors.length; i++) { %>
+      <li>
+        <%= detail.actors[i].first_name %> <%= detail.actors[i].last_name %>
+      </li>
+      <% } %>
     </ul>
-    
-    <button>
-      <a href="/movies/deleteMovies/<%= detail.id %>">Eliminar pelicula</a>
-    </button>
-    <button>
-      <a href="/movies/editMovies/<%= detail.id %>">Modificar Pelicula</a>
-    </button>
-    <button><a href="/">Volver al listado de peliculas</a></button>
+
+    <div>
+      <% if (!locals.user) { %>
+      <button><a href="/">Volver al listado de peliculas</a></button>
+
+      <% } else { %>}
+      <button>
+        <a href="/movies/deleteMovies/<%= detail.id %>">Eliminar pelicula</a>
+      </button>
+      <button>
+        <a href="/movies/editMovies/<%= detail.id %>">Modificar Pelicula</a>
+      </button>
+      <% } %>
+    </div>
   </body>
 </html>

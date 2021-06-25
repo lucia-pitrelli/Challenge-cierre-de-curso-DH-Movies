@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 
 module.exports = (sequelize, dataTypes) => {
-  const alias = "Password";
+  const alias = "PasswordReset";
   const col = {
     email: {
       type: dataTypes.STRING(255),
@@ -21,7 +21,7 @@ module.exports = (sequelize, dataTypes) => {
     updatedAt: "updated_at",
   };
 
-  const Password = sequelize.define(alias, col, config);
+  const PasswordReset = sequelize.define(alias, col, config);
 
-  return Password;
+  return PasswordReset;
 };

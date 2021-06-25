@@ -6,6 +6,7 @@ const sequelize = db.sequelize;
 //const moment = require("moment");
 //const path = require("path");
 const { Op } = require("sequelize");
+const { validationResult } = require("express-validator");
 
 const moviesController = {
   detail: (req, res) => {
@@ -33,26 +34,26 @@ const moviesController = {
   },
   //post create form
   create: (req, res) => {
-    //const errors = validationResult(req);
-    //if (errors.isEmpty()) {
-    const newMovie = {
-      ...req.body,
-      genre_id: req.body.genre,
-    };
-    allMovies
-      .create(newMovie)
-      .then((newMovie) => {
-        // console.log(newMovie);
-        //return res.redirect(`detailMovies/${req.params.id}`);
-        return res.redirect("index");
-      })
-      .catch((error) => {
-        return res.redirect(error);
-      });
-    //} else {
-    // res.render("createMovies", { errors: errors.array() });
+    const errors = validationResult(req);
+    if (errors.isEmpty()) {
+      const newMovie = {
+        ...req.body,
+        genre_id: req.body.genre,
+      };
+      allMovies
+        .create(newMovie)
+        .then((newMovie) => {
+          // console.log(newMovie);
+
+          return res.redirect("/");
+        })
+        .catch((error) => {
+          return res.redirect(error);
+        });
+    } else {
+      res.render("createMovies", { errors: errors.mapped(), old: req.body });
+    }
   },
-  //},
 
   /// get edit form
   update: (req, res) => {
@@ -79,7 +80,7 @@ const moviesController = {
       )
       .then(() => {
         //console.log("sale",req.body)
-        return res.redirect("index");
+        return res.redirect("/");
       })
       .catch((error) => {
         return res.redirect(error);
@@ -97,7 +98,7 @@ const moviesController = {
     allMovies
       .destroy({ where: { id: req.params.id }, force: true }) // force: true es para asegurar que se ejecute la acción
       .then(() => {
-        return res.redirect("index");
+        return res.redirect("/");
       })
       .catch(() => {
         return res.send(error);

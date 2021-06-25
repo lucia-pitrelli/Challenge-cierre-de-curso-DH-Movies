@@ -6,6 +6,9 @@ const router = express.Router();
 
 const movieController = require("../controllers/moviesController");
 
+// Middelware Required
+//const validateForm = require("../middlewares/ValidateCreateAndEdit");
+
 /* GET detail movie. */
 
 router.get("/detailMovies/:id", movieController.detail);
@@ -14,7 +17,7 @@ router.get("/detailMovies/:id", movieController.detail);
 
 router.get("/createMovies", movieController.add);
 
-router.post("/createMovies", movieController.create);
+router.post("/createMovies", /*validateForm,*/ movieController.create);
 
 /* edit movie form. */
 

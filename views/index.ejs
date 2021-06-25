@@ -6,19 +6,34 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
+    <section>
+      <% if (!locals.user) { %>
+      <button><a href="/users/login">Login</a></button>
+      <button><a href="/users/register">Registro</a></button>
+      <% } else { %>}
+      <button>
+        <a href="/users/profile">Bienvenida/o <%= locals.userLogged.name %> </a>
+      </button>
+      <button><a href="/users/logout">Logout</a></button>
+      <% } %>
+      <div>
+        <% if (locals.user) { %>
+        <button>
+          <a href="/movies/createMovies">Agregar Pelicula</a>
+        </button>
+        <% } %>
+      </div>
+    </section>
+
     <h1>LISTADO de PELICULAS</h1>
     <% for (let i=0; i < allMovie.length; i++) { %>
     <ul>
       <li>
-      <a href="/movies/detailMovies/<%= allMovie[i].id %>"
-        ><%= allMovie[i].title %>
-      </a>
+        <a href="/movies/detailMovies/<%= allMovie[i].id %>"
+          ><%= allMovie[i].title %>
+        </a>
       </li>
     </ul>
     <% } %>
-
-    <button>
-      <a href="/movies/createMovies">Agregar Pelicula</a>
-    </button>
   </body>
 </html>

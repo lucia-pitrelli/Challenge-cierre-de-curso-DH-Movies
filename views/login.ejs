@@ -9,21 +9,31 @@
 
   <body>
     <h1>LOGIN</h1>
-    <form action="/" method="get">
+    <form action="/users/login" method="POST">
       <div>
-              <label for="email"></label>
-      <input type="email" name="email" id="email" placeholder="Email" />
+        <label for="email"></label>
+        <input type="email" name="email" id="email" placeholder="Email" />
+        <% if (locals.errors && errors.email) { %>
+        <p><%= errors.email.msg %></p>
+        <% } %>
       </div>
 
-<div>
+      <div>
         <label for="password"></label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        placeholder="Contraseña"
-      />
-</div>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Contraseña"
+        />
+      </div>
+
+      <div>
+        <label for="token">
+          <input type="checkbox" name="token" />Recordar mi usuario
+        </label>
+      </div>
+
       <button type="submit">Inicia Sesión</button>
     </form>
   </body>

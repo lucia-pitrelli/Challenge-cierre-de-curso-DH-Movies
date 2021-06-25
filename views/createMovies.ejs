@@ -10,52 +10,65 @@
     <h1>AGREGAR una PELICULA</h1>
     <form action="/movies/createMovies" method="POST">
       <div>
-         <label for="title">Titulo</label>
-      <input type="text" name="title" id="title" />
+        <label for="title">Titulo</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          value=" <%= locals.old && old.title %>"
+        />
+        <% if (locals.errors && errors.title) { %>
+        <p><%= errors.title %></p>
+        <% } %>
       </div>
-     <div>
-             <label for="rating">Rating</label>
-      <input
-        type="numbers"
-        name="rating"
-        id="rating"
-        
-      />
-     </div>
-<div>
+      <div>
+        <label for="rating">Rating</label>
+        <input
+          type="numbers"
+          name="rating"
+          id="rating"
+          value=" <%= locals.old && old.rating %>"
+        />
+        <% if (locals.errors && errors.rating) { %>
+        <p><%= errors.rating %></p>
+        <% } %>
+      </div>
+      <div>
         <label for="awards">Premios</label>
-      <input type="aw" name="awards" id="awards" />
-</div>
-<div>
+        <input
+          type="aw"
+          name="awards"
+          id="awards"
+          value=" <%= locals.old && old.awards %>"
+        />
+        <% if (locals.errors && errors.awards) { %>
+        <p><%= errors.awards %></p>
+        <% } %>
+      </div>
+      <div>
         <label for="release_date">Fecha de estreno</label>
-      <input
-        type="date"
-        name="release_date"
-        id="release_date"
-        
-      />
-</div>
-<div>
+        <input
+          type="date"
+          name="release_date"
+          id="release_date"
+          value=" <%= locals.old && old.release_date %>"
+        />
+        <% if (locals.errors && errors.release_date) { %>
+        <p><%= errors.release_date %></p>
+        <% } %>
+      </div>
+      <div>
         <label for="length">Duracion</label>
-      <input
-        type="length"
-        name="length"
-        id="length"
-        
-      />
-</div>
-<div>
-       <label for="">Genero</label>
-      <select  name="genre">
-        <% for (let i = 0; i < genre.length; i++) { %>
-        <option value="<%= genre[i].id %>">
-        <%= genre[i].name %>
-        </option>
-         <% } %>
+        <input type="length" name="length" id="length" />
+      </div>
+      <div>
+        <label for="">Genero</label>
+        <select name="genre">
+          <% for (let i=0; i < genre.length; i++) { %>
+          <option value="<%= genre[i].id %>"><%= genre[i].name %></option>
+          <% } %>
         </select>
-      
-</div>
-
+      </div>
       <button type="submit">Guardar</button>
       <button type="reset">Cancelar</button>
     </form>

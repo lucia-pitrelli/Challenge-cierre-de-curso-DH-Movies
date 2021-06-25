@@ -11,7 +11,7 @@ module.exports = (sequelize, dataTypes) => {
     },
 
     name: {
-      type: dataTypes.STRING(255), // varchar?
+      type: dataTypes.STRING(255),
       allowNull: false,
     },
 
@@ -30,12 +30,12 @@ module.exports = (sequelize, dataTypes) => {
     },
 
     rol: {
-      type: dataTypes.STRING(20),
+      type: dataTypes.INTEGER(10),
     },
   };
 
   const config = {
-    timestamps: false,
+    timestamps: true,
     tableName: "users",
     createdAt: "created_at",
     updatedAt: "updated_at",

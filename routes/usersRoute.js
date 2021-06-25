@@ -8,8 +8,6 @@ const userController = require("../controllers/usersController");
 
 // Middelware Required
 
-//COLOCAR
-
 /* Register and processing form*/
 
 router.get("/register", userController.register);
@@ -20,14 +18,14 @@ router.post("/register", userController.processRegister);
 
 router.get("/login", userController.login);
 
-//router.post("/login", userController.processLogin);
+router.post("/login", userController.processLogin);
 
 /* GET user profile. */
 
-router.get("/usersProfile/:id", userController.profile);
+//router.get("/usersProfile/:id", userController.profile);
 
 /*Logout*/
 
-//router.get("/logout", userController.logout);
+router.get("/logout", userController.logout);
 
 module.exports = router;
