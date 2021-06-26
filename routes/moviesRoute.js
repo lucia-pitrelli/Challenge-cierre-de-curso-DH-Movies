@@ -23,7 +23,7 @@ router.post("/createMovies", [admin, validations], movieController.create);
 
 router.get("/editMovies/:id", admin, movieController.update);
 
-router.put("/editMovies/:id", validations, movieController.edit);
+router.put("/editMovies/:id", [admin, validations], movieController.edit);
 
 /* DELETE one movie. */
 
