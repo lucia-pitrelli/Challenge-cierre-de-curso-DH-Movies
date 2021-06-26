@@ -30,28 +30,19 @@ const usersController = {
   },
 
   processLogin: (req, res) => {
-    console.log("pepe", req.body);
     allUsers
       .findOne({ where: { email: req.body.email } })
       .then((user) => {
-        console.log("usuario", user);
         if (user) {
           if (bcrypt.compareSync(req.body.password, user.password)) {
             let userData = user.dataValues;
             delete userData.password;
-            //le doy valor al usuario en session de userData,mientras sea el mismo usuario se tiene los datos del usuario
             req.session.user = userData;
-            console.log(req.session);
             if (req.body.token) {
               const token = crypto.randomBytes(64).toString("base64");
-
               user
-                .update(
-                  { remember_token: token },
-                  { where: { id: req.params.id } }
-                )
+                .update({ remember_token: token })
                 .then(() => {
-                  // 24hs guardado
                   res.cookie("rememberToken", token, {
                     maxAge: 24 * 60 * 60 * 1000,
                   });
@@ -74,7 +65,7 @@ const usersController = {
           return res.render("login", {
             errors: {
               email: {
-                msg: "No se encuentra registrado el usuario",
+                msg: "No se encuentra registrado el email",
               },
             },
           });
@@ -86,7 +77,6 @@ const usersController = {
   },
 
   logout: (req, res) => {
-    //elimino la session y luego la cookie
     req.session.destroy();
 
     res.cookie("rememberToken", null, { maxAge: -1 });

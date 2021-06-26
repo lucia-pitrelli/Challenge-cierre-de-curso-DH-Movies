@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
+
   <body>
     <main>
-       <section></section>
-      <% if (!locals.user) { %>
-      <div>
-        <button><a href="/users/login">Login</a></button>
-      </div>
-      <div>
-        <button><a href="/users/register">Registro</a></button>
-      </div>
-      <% } else { %>
-     
+      <section>
+        <% if (!locals.user) { %>
+        <div>
+          <button><a href="/users/login">Login</a></button>
+        </div>
+        <div>
+          <button><a href="/users/register">Registro</a></button>
+        </div>
+        <% } else { %>
         <div>
           <h1>Bienvenida/o <%= locals.user.name %></h1>
         </div>
@@ -25,10 +25,10 @@
         </div>
         <div>
           <button>
-            <a href="/movies/createMovies">Agregar Pelicula</a>
+            <a href="/movies/createMovies">Agregar Película</a>
           </button>
         </div>
-         <% } %>
+        <% } %>
       </section>
 
       <section>
@@ -36,8 +36,8 @@
         <% for (let i=0; i < allMovie.length; i++) { %>
         <ul>
           <li>
-            <a href="/movies/detailMovies/<%= allMovie[i].id %>"
-              ><%= allMovie[i].title %>
+            <a href="/movies/detailMovies/<%= allMovie[i].id %>">
+              <%= allMovie[i].title %>
             </a>
           </li>
         </ul>

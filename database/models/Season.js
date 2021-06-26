@@ -4,7 +4,7 @@ module.exports = (sequelize, dataTypes) => {
   const alias = "Season";
   const col = {
     id: {
-      type: dataTypes.INTEGER(10), // o sin numero
+      type: dataTypes.INTEGER(10),
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
@@ -38,11 +38,5 @@ module.exports = (sequelize, dataTypes) => {
 
   const Season = sequelize.define(alias, col, config);
 
- // Season.associate = function (models) {
-  //  Season.belongsTo(models.Serie, {
-   //   foreignKey: "serie_id",
-   //   as: "allSerie",
-   // });
- // };
   return Season;
 };

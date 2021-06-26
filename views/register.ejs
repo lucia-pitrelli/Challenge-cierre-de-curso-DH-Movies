@@ -7,37 +7,39 @@
   </head>
 
   <body>
-    <form action="/users/register" method="POST">
-      <h2>Creá tu cuenta</h2>
-
-      <div>
-        <label for="name">Nombre</label>
-        <input type="text" name="name" id="name" />
-      </div>
-      <div>
-        <label for="email">E-mail</label>
-        <input type="email" name="email" id="email" />
-      </div>
-      <div>
-        <label for="password">Contraseña</label>
-        <input type="password" name="password" id="password" />
-      </div>
-      <div>
-        <label>Rol de usuario</label>
-        <select name="rol" id="rol">
-          <option value="1">Administrador</option>
-          <option value="0">Usuario</option>
-        </select>
-      </div>
-
-      <div>
-        <button type="submit">Registrate</button>
-        <button type="reset">Cancelar</button>
-      </div>
-    </form>
-    <p>¿Ya tenés un cuenta?</p>
-    <p>
-      <a href="/users/login">ingresá</a>
-    </p>
+    <h1>Creá tu cuenta</h1>
+    <section>
+      <form action="/users/register" method="POST">
+        <div>
+          <label for="name">Nombre</label>
+          <input type="text" name="name" id="name" />
+        </div>
+        <div>
+          <label for="email">E-mail</label>
+          <input type="email" name="email" id="email" />
+        </div>
+        <div>
+          <label for="password">Contraseña</label>
+          <input type="password" name="password" id="password" />
+        </div>
+        <div>
+          <label>Rol de usuario</label>
+          <select name="rol" id="rol">
+            <option value="1">Administrador</option>
+            <option value="0">Usuario</option>
+          </select>
+        </div>
+        <div>
+          <button type="submit">Registrate</button>
+          <button type="reset">Cancelar</button>
+        </div>
+      </form>
+    </section>
+    <div>
+      <h2>¿Ya tenés un cuenta?</h2>
+      <button>
+        <a href="/users/login">ingresá</a>
+      </button>
+    </div>
   </body>
 </html>

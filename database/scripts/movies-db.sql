@@ -221,7 +221,6 @@ CREATE TABLE `movies` (
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---ALTER TABLE `movies` ADD `softDelete` timestamp   NULL  AFTER `genre_id`;
 
 --
 -- Dumping data for table `movies`

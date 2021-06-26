@@ -6,12 +6,6 @@ const router = express.Router();
 
 const userController = require("../controllers/usersController");
 
-// Middelware Required
-
-const noUser = require("../middlewares/noUserRoute");
-const user = require("../middlewares/userRoute");
-const admin = require("../middlewares/admRoute");
-
 /* Register and processing form*/
 
 router.get("/register", userController.register);

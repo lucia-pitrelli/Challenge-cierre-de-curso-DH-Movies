@@ -10,12 +10,12 @@
     <h1>AGREGAR una PELICULA</h1>
     <form action="/movies/createMovies" method="POST">
       <div>
-        <label for="title">Titulo</label>
+        <label for="title">Título</label>
         <input
           type="text"
           name="title"
           id="title"
-          value=" <%= locals.old && old.title %>"
+          value="<%= locals.old && old.title %>"
         />
         <% if (locals.errors && errors.title) { %>
         <p class="text"><%= errors.title.msg %></p>
@@ -24,10 +24,10 @@
       <div>
         <label for="rating">Rating</label>
         <input
-          type="decimal"
+          type="number"
           name="rating"
           id="rating"
-          value=" <%= locals.old && old.rating %>"
+          value="<%= locals.old && old.rating %>"
         />
         <% if (locals.errors && errors.rating) { %>
         <p class="text"><%= errors.rating.msg %></p>
@@ -39,7 +39,7 @@
           type="number"
           name="awards"
           id="awards"
-          value=" <%= locals.old && old.awards %>"
+          value="<%= locals.old && old.awards %>"
         />
         <% if (locals.errors && errors.awards) { %>
         <p class="text"><%= errors.awards.msg %></p>
@@ -51,23 +51,26 @@
           type="date"
           name="release_date"
           id="release_date"
-          value=" <%= locals.old && old.release_date %>"
+          value="<%= locals.old && old.release_date %>"
         />
         <% if (locals.errors && errors.release_date) { %>
         <p class="text"><%= errors.release_date.msg %></p>
         <% } %>
       </div>
       <div>
-        <label for="length">Duracion</label>
+        <label for="length">Duración</label>
         <input
-          type="length"
+          type="number"
           name="length"
           id="length"
-          value=" <%= locals.old && old.length %>"
+          value="<%= locals.old && old.length %>"
         />
+        <% if (locals.errors && errors.length) { %>
+        <p class="text"><%= errors.length.msg %></p>
+        <% } %>
       </div>
       <div>
-        <label for="">Genero</label>
+        <label for="">Género</label>
         <select name="genre">
           <% for (let i=0; i < genre.length; i++) { %>
           <option value="<%= genre[i].id %>"><%= genre[i].name %></option>
@@ -77,6 +80,6 @@
       <button type="submit">Guardar</button>
       <button type="reset">Cancelar</button>
     </form>
-    <button><a href="/">Volver al listado de peliculas</a></button>
+    <button><a href="/">Volver al listado de películas</a></button>
   </body>
 </html>

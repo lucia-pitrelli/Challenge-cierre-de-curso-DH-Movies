@@ -8,27 +8,27 @@ const movieController = require("../controllers/moviesController");
 
 // Middelware
 const validations = require("../middlewares/ValidateCreateAndEdit");
-
+const admin = require("../middlewares/admRoute");
 /* GET detail movie. */
 
 router.get("/detailMovies/:id", movieController.detail);
 
 /* create movie form. */
 
-router.get("/createMovies", movieController.add);
+router.get("/createMovies", admin, movieController.add);
 
-router.post("/createMovies", validations, movieController.create);
+router.post("/createMovies", [admin, validations], movieController.create);
 
 /* edit movie form. */
 
-router.get("/editMovies/:id", movieController.update);
+router.get("/editMovies/:id", admin, movieController.update);
 
 router.put("/editMovies/:id", validations, movieController.edit);
 
 /* DELETE one movie. */
 
-router.get("/deleteMovies/:id", movieController.delete);
+router.get("/deleteMovies/:id", admin, movieController.delete);
 
-router.delete("/deleteMovies/:id", movieController.destroy);
+router.delete("/deleteMovies/:id", admin, movieController.destroy);
 
 module.exports = router;

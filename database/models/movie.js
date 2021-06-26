@@ -12,39 +12,41 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.STRING(500),
       allowNull: false,
     },
+
     rating: {
       type: dataTypes.DECIMAL(3, 1).UNSIGNED,
       allowNull: false,
     },
+
     awards: {
       type: dataTypes.BIGINT(10).UNSIGNED,
       allowNull: false,
     },
+
     release_date: {
       type: dataTypes.DATEONLY,
       allowNull: false,
     },
+
     length: dataTypes.BIGINT(10),
     genre_id: dataTypes.BIGINT(10),
   };
+
   let config = {
     timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
     deletedAt: false,
-    //paranoid: true   deletedAt: "softDelete"
   };
   const Movie = sequelize.define(alias, cols, config);
 
   Movie.associate = function (models) {
     Movie.belongsTo(models.Genre, {
-      // pertenece a un solo genero
       as: "genre",
       foreignKey: "genre_id",
     });
 
     Movie.belongsToMany(models.Actor, {
-      // muchos a muchos
       as: "actors",
       through: "actor_movie",
       foreignKey: "movie_id",

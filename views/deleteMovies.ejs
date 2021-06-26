@@ -7,17 +7,22 @@
   </head>
 
   <body>
-    <form
-      action="/movies/deleteMovies/<%= movies.id %>?_method=DELETE"
-      method="POST"
-      class="form-menu"
-    >
-      <h1>ELIMINAR PELICULA</h1>
-      <p>¿ Deseas eliminar a <%= movies.title %>?</p>
-      <button type="submit">Borrar pelicula</button>
-    </form>
+    <h1>ELIMINAR PELICULA</h1>
+    <section>
+      <form
+        action="/movies/deleteMovies/<%= movies.id %>?_method=DELETE"
+        method="POST"
+        class="form-menu"
+      >
+        <div>
+          <p>¿ Deseas eliminar a <%= movies.title %>?</p>
+        </div>
+        <button type="submit">Borrar película</button>
+      </form>
+    </section>
+
     <div>
-      <a href="/"> Volver al Listado de peliculas</a>
+      <button><a href="/"> Volver al Listado de películas</a></button>
     </div>
   </body>
 </html>

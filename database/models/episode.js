@@ -11,14 +11,17 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.STRING(500),
       allowNull: true,
     },
+
     number: {
       type: dataTypes.BIGINT(10).UNSIGNED,
       allowNull: true,
     },
+
     rating: {
       type: dataTypes.DECIMAL(3, 1),
       allowNull: false,
     },
+
     season_id: {
       type: dataTypes.BIGINT(10).UNSIGNED,
       allowNull: true,

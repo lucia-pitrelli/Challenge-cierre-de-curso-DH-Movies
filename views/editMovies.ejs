@@ -10,17 +10,16 @@
     <h1>EDITAR PELICULAS</h1>
     <form action="/movies/editMovies/<%= movie.id %>?_method=PUT" method="POST">
       <div>
-        <label for="title">Titulo</label>
+        <label for="title">Título</label>
         <input type="text" name="title" id="title" value="<%= movie.title %>" />
         <% if (locals.errors && errors.title) { %>
         <p class="text"><%= errors.title.msg %></p>
         <% } %>
       </div>
-
       <div>
         <label for="rating">Rating</label>
         <input
-          type="decimal"
+          type="number"
           name="rating"
           id="rating"
           value="<%= movie.rating %>"
@@ -53,22 +52,20 @@
         <p class="text"><%= errors.release_date.msg %></p>
         <% } %>
       </div>
-
       <div>
-        <label for="length">Duracion</label>
+        <label for="length">Duración</label>
         <input
-          type="len"
+          type="number"
           name="length"
           id="length"
           value="<%= movie.length %>"
         />
-        <% if (locals.errors && errors.release_date) { %>
-        <p class="text"><%= errors.release_date.msg %></p>
+        <% if (locals.errors && errors.length) { %>
+        <p class="text"><%= errors.length.msg %></p>
         <% } %>
       </div>
-
       <div>
-        <label for="">Genero</label>
+        <label for="">Género</label>
         <select name="genre" id="genre">
           <% for (let i=0; i < genre.length; i++) { %> <% if
           (genre[i].id==movie.genre_id) { %>
@@ -84,6 +81,6 @@
       <button type="submit">Guardar</button>
       <button type="reset">Cancelar</button>
     </form>
-    <button><a href="/">Volver al listado de peliculas</a></button>
+    <button><a href="/">Volver al listado de películas</a></button>
   </body>
 </html>

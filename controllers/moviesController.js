@@ -1,18 +1,17 @@
 const db = require("./../database/models");
 const allMovies = db.Movie;
 const allGenres = db.Genre;
-//const allActors = db.Actor;
 const sequelize = db.sequelize;
-
 const { Op } = require("sequelize");
 const { validationResult } = require("express-validator");
 
 const moviesController = {
+  //get detail movie
   detail: (req, res) => {
     allMovies
       .findByPk(req.params.id, {
         include: [{ association: "genre" }, { association: "actors" }],
-      }) //utilizo los as de movie
+      })
       .then((detail) => {
         return res.render("detailMovies", { detail });
       })
@@ -20,6 +19,7 @@ const moviesController = {
         return res.redirect(error);
       });
   },
+
   //get create form
   add: (req, res) => {
     allGenres
@@ -34,8 +34,6 @@ const moviesController = {
   //post create form
   create: (req, res) => {
     const errors = validationResult(req);
-    console.log("pepito", errors);
-
     if (errors.isEmpty()) {
       const newMovie = {
         ...req.body,
@@ -126,7 +124,7 @@ const moviesController = {
 
   destroy: function (req, res) {
     allMovies
-      .destroy({ where: { id: req.params.id }, force: true }) // force: true es para asegurar que se ejecute la acción (hard-delete)
+      .destroy({ where: { id: req.params.id }, force: true })
       .then(() => {
         return res.redirect("/");
       })

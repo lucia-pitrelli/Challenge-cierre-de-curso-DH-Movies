@@ -4,14 +4,14 @@ module.exports = (sequelize, dataTypes) => {
   const alias = "Serie";
   const col = {
     id: {
-      type: dataTypes.INTEGER(10), // o sin numero
+      type: dataTypes.INTEGER(10),
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
 
     title: {
-      type: dataTypes.STRING(500), // varchar?
+      type: dataTypes.STRING(500),
       allowNull: false,
     },
 
@@ -39,11 +39,5 @@ module.exports = (sequelize, dataTypes) => {
 
   const Serie = sequelize.define(alias, col, config);
 
- // Serie.associate = function (models) {
-  //  Serie.belongsTo(models.Genre, {
-   //   foreignKey: "genre_id",
-   //   as: "genero",
-  //  });
-  //};
   return Serie;
 };

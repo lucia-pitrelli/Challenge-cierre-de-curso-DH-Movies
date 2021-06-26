@@ -12,10 +12,12 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.STRING(100),
       allowNull: false,
     },
+
     ranking: {
       type: dataTypes.BIGINT(10).UNSIGNED,
       allowNull: false,
     },
+
     active: {
       type: dataTypes.BOOLEAN,
       allowNull: false,
@@ -33,7 +35,7 @@ module.exports = (sequelize, dataTypes) => {
 
   Genre.associate = function (models) {
     Genre.hasMany(models.Movie, {
-      as: "movies", // El nombre del modelo pero en plural
+      as: "movies",
       foreignKey: "genre_id",
     });
   };
