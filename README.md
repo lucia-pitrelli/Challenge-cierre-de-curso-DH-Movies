@@ -1,5 +1,8 @@
-# Challenge cierre de curso Digital House, Movies-db
+#  Movies-db
 
+
+
+""
 ### Instrucciones para crear la estructura de base de datos y para correr el Proyecto:
 
 ### En primer lugar, ejecutar el script "movies-db.sql" para generar la estructura de la base de datos.
